@@ -1,0 +1,9 @@
+{% extends 'blog_list.html'%}
+
+{% block  title %}
+    {{ blog_type.type_name }}
+{% endblock %}
+
+{% block blog_list_title %}
+    <h4>日期分类：{{ blog_date }}</h4>
+{% endblock blog_list_title %}

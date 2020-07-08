@@ -1,0 +1,20 @@
+ul {
+    list-style-type: none;
+}
+
+ul.blog-list-item li {
+    display: inline-block;
+    margin-right: 1em;
+}
+
+div.blog-content p {
+    text-indent: 2em!important;
+}
+
+div.paginator {
+    text-align: center;
+}
+
+div.previous-next {
+    margin-top: 1em;
+}
