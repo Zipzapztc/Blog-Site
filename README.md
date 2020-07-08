@@ -17,4 +17,4 @@ Python 3.7.2    Django 2.2
 
 学习Django之前，我在网上找了很多视频，看来看去还是杨老师的视频讲的最细致，最全面。而且杨老师的视频全是免费的，特别良心。
 
-最后附杨老师的B站链接：https://space.bilibili.com/252028233 和官网链接：https://zqyhdm.com/ 。
+最后附杨老师的GitHub链接：https://github.com/HaddyYang ，B站链接：https://space.bilibili.com/252028233 和官网链接：https://zqyhdm.com/ 。
