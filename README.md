@@ -9,7 +9,7 @@
 
 ## 环境
 
-Python 3.7.2    Django 2.2
+VScode  Python 3.7.2    Django 2.2  
 
 ## 特别感谢
 
