@@ -45,6 +45,21 @@
                     </p>
                 </div>
             </div>
+            <div class="col-xs-10 col-xs-offset-1">
+                {% if user.is_authenticated %}
+                    已登录
+                    {{ user }}
+                {% else %}
+                    未登录
+                    <form action="{% url 'log_in'%}" method='POST'>
+                        {% csrf_token %}
+                        <input type="text" name='username'>
+                        <input type="password" name='password'>
+                        <input type="submit" name='登录'>
+                    </form>
+                {% endif %}
+                
+            </div>
         </div>
     </div>
 

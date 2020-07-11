@@ -26,6 +26,7 @@
             xAxis: {
                 categories: {{ dates|safe }},   // x 轴分类
                 tickmarkPlacement: 'on',
+                title:{ text:'最近一周阅读情况' }
             },
             yAxis: {
                 title: { text: null },
@@ -49,4 +50,44 @@
         // 图表初始化函数
         var chart = Highcharts.chart('container', options);
     </script>
+    <div class="hot-blog">
+        <h3>今日热门文章</h3>
+        <ul>
+            {% for hot_blog in today_hot_blog %}
+                <li><a href="{% url 'blog_detail' hot_blog.content_object.id %}">{{ hot_blog.content_object.title }}</a>({{ hot_blog.read_num }})</li>
+            {% empty %}
+                <li>暂无热门文章</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="hot-blog">
+        <h3>昨日热门文章</h3>
+        <ul>
+            {% for hot_blog in yesterday_hot_blog %}
+                <li><a href="{% url 'blog_detail' hot_blog.content_object.id %}">{{ hot_blog.content_object.title}}</a>({{ hot_blog.read_num }})</li>
+            {% empty %}
+                <li>暂无热门文章</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="hot-blog">
+        <h3>本周热门文章</h3>
+        <ul>
+            {% for hot_blog in week_hot_blog %}
+                <li><a href="{% url 'blog_detail' hot_blog.id %}">{{ hot_blog.title }}</a>({{ hot_blog.read_num_sum }})</li>
+            {% empty %}
+                <li>暂无热门文章</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="hot-blog">
+        <h3>本月热门文章</h3>
+        <ul>
+            {% for hot_blog in month_hot_blog %}
+                <li><a href="{% url 'blog_detail' hot_blog.id %}">{{ hot_blog.title }}</a>({{ hot_blog.read_num_sum }})</li>
+            {% empty %}
+                <li>暂无热门文章</li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock content %}

@@ -8,4 +8,12 @@ h3.home-content {
 div#container {
     margin:0 auto;
     height: 25em;
+    min-width: 30em;
+    max-width: 50em;
 }
+
+div.hot-blog {
+    text-align: center;
+    margin-bottom: 2em;
+}
+

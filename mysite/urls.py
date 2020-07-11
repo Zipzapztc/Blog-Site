@@ -17,13 +17,14 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import home
+from .views import home,log_in
 
 urlpatterns = [
     path('',home,name='home'),
     path('admin/', admin.site.urls),
     path('blog/',include('blog.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('login/',log_in,name='log_in'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

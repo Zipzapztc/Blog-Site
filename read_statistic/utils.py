@@ -28,3 +28,14 @@ def get_week_read_num(content_type):
         result=read_detail.aggregate(read_num_sum=Sum('read_num'))
         read_nums.append(result['read_num_sum'] or 0)
     return dates,read_nums
+
+def get_today_hot_blog(content_type):
+    today=timezone.now().date()
+    blogs=ReadDetail.objects.filter(content_type=content_type,date=today).order_by('-read_num')
+    return blogs[:5]
+
+def get_yesterday_hot_blog(content_type):
+    today=timezone.now().date()
+    yesterday=today-datetime.timedelta(days=1)
+    blogs=ReadDetail.objects.filter(content_type=content_type,date=yesterday).order_by('-read_num')
+    return blogs[:5]
