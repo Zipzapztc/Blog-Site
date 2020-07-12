@@ -1,6 +1,3 @@
-ul {
-    list-style-type: none;
-}
 
 ul.blog-list-item li {
     display: inline-block;
@@ -17,4 +14,8 @@ div.paginator {
 
 div.previous-next {
     margin-top: 1em;
+}
+
+div.comment {
+    margin-top: 2em;
 }

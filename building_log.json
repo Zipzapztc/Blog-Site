@@ -1,6 +1,7 @@
 {
     "前记":"之前都没有记录每日学习经过，很可惜",
     "2020/7/8":"使用django-ckeditor第三方库实现富文本编辑,在后台图片编辑中添加图片上传功能；使用cookies实现博客阅读简单计数",
-    "2020/7/10":"创建新app：read_statistic,使用Django的ContentType库将blog和read_statistic的模型外键关联，优化博客阅读计数；实现一周阅读数统计，以折线图的方式展示在首页",
-    "2020/7/11":"使用Django的GenericRelation库，在blog的Blog模型中建立与read_statistic的ReadDetail的关联，实现热门博客统计及展示；创建新app：comment；form表单提交用户名和密码，authenticate库和login库进行身份判断，在博客文章下实现未登录用户登录操作"
+    "2020/7/10":"创建新app：read_statistic,使用Django的ContentType将blog和read_statistic的模型外键关联，优化博客阅读计数；实现一周阅读数统计，以折线图的方式展示在首页",
+    "2020/7/11":"使用Django的GenericRelation，在blog的Blog模型中建立与read_statistic的ReadDetail的关联，实现热门博客统计及展示；创建新app：comment；使用html的form表单提交用户名和密码，authenticate和login进行身份判断，在博客文章下实现未登录用户登录操作",
+    "2020/7/12":"使用html的form表单提交评论，将评论展示在文章下方评论列表；使用Django的form表单进行注册登录操作"
 }
