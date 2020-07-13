@@ -19,3 +19,7 @@ div.previous-next {
 div.comment {
     margin-top: 2em;
 }
+
+div.django-ckeditor-widget {
+    width: 100%;
+}
