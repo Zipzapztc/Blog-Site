@@ -23,3 +23,7 @@ div.comment {
 div.django-ckeditor-widget {
     width: 100%;
 }
+
+div.reply {
+    margin-left: 2em;
+}

@@ -56,14 +56,14 @@ def blog_detail(request,blog_id):
     blog=get_object_or_404(Blog,id=blog_id)
     cookie_name=read_num_add_one(request,blog)
     content_type=ContentType.objects.get_for_model(blog)
-    comments=Comment.objects.filter(content_type=content_type,object_id=blog.id)
+    comments=Comment.objects.filter(content_type=content_type,object_id=blog.id,root=None)
 
     context={}
     context['previous_blog']=Blog.objects.filter(create_time__gt=blog.create_time).last()
     context['blog']=blog
     context['next_blog']=Blog.objects.filter(create_time__lt=blog.create_time).first()
-    context['comment_form']=CommentForm(initial={'content_type':content_type.model,'object_id':blog_id})
-    context['comments']=comments
+    context['comment_form']=CommentForm(initial={'content_type':content_type.model,'object_id':blog_id,'reply_comment_id':0})
+    context['comments']=comments.order_by('-comment_time')
     response=render(request,'blog_detail.html',context)
     response.set_cookie(cookie_name,'true')
     return response
