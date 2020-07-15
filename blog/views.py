@@ -5,8 +5,8 @@ from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from .models import BlogType,Blog
 from read_statistic.utils import read_num_add_one
-from comment.models import Comment
-from comment.forms import CommentForm
+#from comment.models import Comment
+#from comment.forms import CommentForm
 
 def blog_list_common(request,blog_all):
     paginator=Paginator(blog_all,settings.EACH_PAGE_BLOG_NUM)
@@ -55,15 +55,15 @@ def blog_with_date(request,year,month):
 def blog_detail(request,blog_id):
     blog=get_object_or_404(Blog,id=blog_id)
     cookie_name=read_num_add_one(request,blog)
-    content_type=ContentType.objects.get_for_model(blog)
-    comments=Comment.objects.filter(content_type=content_type,object_id=blog.id,root=None)
+    #content_type=ContentType.objects.get_for_model(blog)
+    #comments=Comment.objects.filter(content_type=content_type,object_id=blog.id,root=None)
 
     context={}
     context['previous_blog']=Blog.objects.filter(create_time__gt=blog.create_time).last()
     context['blog']=blog
     context['next_blog']=Blog.objects.filter(create_time__lt=blog.create_time).first()
-    context['comment_form']=CommentForm(initial={'content_type':content_type.model,'object_id':blog_id,'reply_comment_id':0})
-    context['comments']=comments.order_by('-comment_time')
+    #context['comment_form']=CommentForm(initial={'content_type':content_type.model,'object_id':blog_id,'reply_comment_id':0})
+    #context['comments']=comments.order_by('-comment_time')
     response=render(request,'blog_detail.html',context)
     response.set_cookie(cookie_name,'true')
     return response

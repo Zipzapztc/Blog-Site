@@ -5,5 +5,6 @@
     "2020/7/11":"使用Django的GenericRelation，在blog的Blog模型中建立与read_statistic的ReadDetail的关联，实现热门博客统计及展示；创建新app：comment；使用html的form表单提交用户名和密码，authenticate和login进行身份判断，在博客文章下实现未登录用户登录操作",
     "2020/7/12":"使用html的form表单提交评论，将评论展示在文章下方评论列表；使用Django的form表单进行注册登录操作",
     "2020/7/13":"使用Djano的form表单进行评论操作；使用ajax实现异步更新评论信息",
-    "2020/7/14":"在评论中添加回复功能；使用ajax实现异步更新回复信息"
+    "2020/7/14":"在评论中添加回复功能；使用ajax实现异步更新回复信息",
+    "2020/7/15":"使用templatetags自定义标签，实现评论数统计"
 }

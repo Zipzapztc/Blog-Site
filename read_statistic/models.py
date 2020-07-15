@@ -22,7 +22,7 @@ class ReadNumExpand:
             return 0
 
 class ReadDetail(models.Model):
-    date=models.DateField(default=timezone.now)
+    date=models.DateField(default=timezone.localtime)
     read_num=models.IntegerField(default=0)
 
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)

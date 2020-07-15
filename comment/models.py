@@ -12,8 +12,8 @@ class Comment(models.Model):
     user=models.ForeignKey(User,related_name='comment_user',on_delete=models.DO_NOTHING)
     comment_time=models.DateTimeField(auto_now_add=True)
 
-    root=models.ForeignKey('self',related_name='leaf_comment',null=True,on_delete=models.DO_NOTHING)
-    parent=models.ForeignKey('self',related_name='child_comment',null=True,on_delete=models.DO_NOTHING)
+    root=models.ForeignKey('self',related_name='leaf_comment',null=True,on_delete=models.CASCADE)
+    parent=models.ForeignKey('self',related_name='child_comment',null=True,on_delete=models.CASCADE)
     reply_to_user=models.ForeignKey(User,related_name='reply_user',null=True,on_delete=models.DO_NOTHING)
 
     def __str__(self):

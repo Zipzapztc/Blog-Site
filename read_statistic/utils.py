@@ -12,13 +12,13 @@ def read_num_add_one(request,obj):
         readnum.read_num+=1
         readnum.save()
 
-        readdetail,created=ReadDetail.objects.get_or_create(content_type=content_type,object_id=obj.id,date=timezone.now().date())
+        readdetail,created=ReadDetail.objects.get_or_create(content_type=content_type,object_id=obj.id,date=timezone.localtime().date())
         readdetail.read_num+=1
         readdetail.save()
     return cookie_name
 
 def get_week_read_num(content_type):
-    today=timezone.now().date()
+    today=timezone.localtime().date()
     dates=[]
     read_nums=[]
     for i in range(6,-1,-1):
@@ -30,12 +30,12 @@ def get_week_read_num(content_type):
     return dates,read_nums
 
 def get_today_hot_blog(content_type):
-    today=timezone.now().date()
+    today=timezone.localtime().date()
     blogs=ReadDetail.objects.filter(content_type=content_type,date=today).order_by('-read_num')
     return blogs[:5]
 
 def get_yesterday_hot_blog(content_type):
-    today=timezone.now().date()
+    today=timezone.localtime().date()
     yesterday=today-datetime.timedelta(days=1)
     blogs=ReadDetail.objects.filter(content_type=content_type,date=yesterday).order_by('-read_num')
     return blogs[:5]
