@@ -1,6 +1,7 @@
 {% extends 'base.html'%}
 {% load static %}
 {% load comment_tags %}
+{% load like_tags %}
 
 {% block  title %}
     {{ blog.title }}
@@ -30,8 +31,14 @@
                     <li>最近修改时间：{{ blog.last_update_time|date:'Y-m-d G:i:s' }}</li>
                     <li>阅读：{{ blog.get_read_num }}</li>
                     <li>评论：{% get_comment_num blog %}</li>
+                    <li>点赞：{% get_like_num blog %}</li>
                 </ul>
                 <div class='blog-content'>{{ blog.content|safe }}</div>
+                <div class="like" onclick="likeChange(this,'{% get_content_type blog %}',{{ blog.id }})">
+                    <span class="glyphicon glyphicon-thumbs-up {% get_like_status blog %}"></span>
+                    <span class='like-num'>{% get_like_num blog %}</span>
+                    <span>喜欢</span>
+                </div>               
                 <div class='previous-next'>
                     <p>上一篇：
                         {% if previous_blog %}
@@ -86,6 +93,10 @@
                                 <div id="comment_{{ comment.id }}">
                                     {{ comment.text|safe }}
                                 </div>
+                                <div class="like" onclick="likeChange(this,'{% get_content_type comment %}',{{ comment.id }})">
+                                    <span class="glyphicon glyphicon-thumbs-up {% get_like_status comment %}"></span>
+                                    <span class='like-num'>{% get_like_num comment %}</span>
+                                </div>
                                 <a href="javascript:reply({{ comment.id }});">回复</a>
 
                                 {% for reply in comment.leaf_comment.all %}
@@ -95,6 +106,10 @@
                                         <span>回复{{ reply.reply_to_user }}：</span>
                                         <div id="comment_{{ reply.id }}">
                                             {{ reply.text|safe }}
+                                        </div>
+                                        <div class="like" onclick="likeChange(this,'{% get_content_type reply %}',{{ reply.id }})">
+                                            <span class="glyphicon glyphicon-thumbs-up {% get_like_status reply %}"></span>
+                                            <span class='like-num'>{% get_like_num reply %}</span>
                                         </div>
                                         <a href="javascript:reply({{ reply.id }});">回复</a>
                                     </div> 
@@ -170,6 +185,39 @@
 
             $('html').animate({scrollTop: $('#comment_form').offset().top - 60}, 300, function(){
                 CKEDITOR.instances['id_text'].focus();
+            });
+        }
+        function likeChange(obj, content_type, object_id){
+            var is_like = obj.getElementsByClassName('active').length == 0
+            $.ajax({
+                url: "{% url 'like_change' %}",
+                type: 'GET',
+                data: {
+                    content_type: content_type,
+                    object_id: object_id,
+                    is_like: is_like
+                },
+                cache: false,
+                success: function(data){
+                    console.log(data)
+                    if(data['status']=='SUCCESS'){
+                        // 更新点赞状态
+                        var element = $(obj.getElementsByClassName('glyphicon'));
+                        if(is_like){
+                            element.addClass('active');
+                        }else{
+                            element.removeClass('active');
+                        }
+                        // 更新点赞数量
+                        var like_num = $(obj.getElementsByClassName('like-num'));
+                        like_num.text(data['like_num']);
+                    }else{
+                        alert(data['message']);
+                    }
+                },
+                error: function(xhr){
+                    console.log(xhr)
+                }
             });
         }
     </script>
