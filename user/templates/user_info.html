@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    个人资料
+{% endblock title %}
+
+{% block nav_home_active %}
+    active
+{% endblock nav_home_active %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+                {% if user.is_authenticated %}
+                    <h3>{{ user.username }}</h3>
+                    <ul>
+                        <li>昵称：</li>
+                        <li>邮箱：
+                        {% if user.email %}
+                            {{ user.email }}
+                        {% else %}
+                            未绑定
+                        {% endif %}
+                        </li>
+                        <li>修改密码：</li>
+                        <li>上一次登陆时间：{{ user.last_login|date:'Y-m-d G:i:s' }}</li>
+                    </ul>
+                {% else %}
+                    <span>正在跳转到首页...</span>
+                    <script type='text/javascript'>                    
+                        window.location.href='/';
+                    </script>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+   
+    
+{% endblock content %}

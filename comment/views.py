@@ -31,6 +31,7 @@ def update_comment(request):
             data['reply_to_user']=''
         data['id']=comment.id
         data['root_id']=comment.root.id if comment.root is not None else ''
+        data['content_type']=ContentType.objects.get_for_model(comment).model
     else:
         data['status']='FAIL'
         data['message']=list(comment_form.errors.values())[0][0]
