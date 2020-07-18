@@ -13,25 +13,32 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-4 col-xs-offset-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">注册</h3>
+                {% if not user.is_authenticated %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">注册</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form action="" method='POST'>
+                                {% csrf_token %}
+                                <div class='form-group'>
+                                    {% for item in register_form %}
+                                        <label for="{{ item.id_for_label }}">{{ item.label }}</label>
+                                        {{ item }}
+                                        <p class="text-danger">{{ item.errors.as_text }}</p>
+                                    {% endfor %}    
+                                </div>
+                                <span class="pull-left text-danger">{{ register_form.non_field_errors }}</span>
+                                <input type="submit" class='btn btn-primary pull-right' value='注册'>
+                            </form>
+                        </div>
                     </div>
-                    <div class="panel-body">
-                        <form action="" method='POST'>
-                            {% csrf_token %}
-                            <div class='form-group'>
-                                {% for item in register_form %}
-                                    <label for="{{ item.id_for_label }}">{{ item.label }}</label>
-                                    {{ item }}
-                                    <p class="text-danger">{{ item.errors.as_text }}</p>
-                                {% endfor %}    
-                            </div>
-                            <span class="pull-left text-danger">{{ register_form.non_field_errors }}</span>
-                            <input type="submit" class='btn btn-primary pull-right' value='注册'>
-                        </form>
-                    </div>
-                </div>  
+                {% else %}
+                    <span>已登录，跳转到首页...</span>
+                    <script type="text/javascript">
+                        window.location.href = '/';
+                    </script>
+                {% endif %}     
             </div>
         </div>
     </div>

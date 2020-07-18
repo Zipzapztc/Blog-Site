@@ -16,7 +16,7 @@
                 {% if user.is_authenticated %}
                     <h3>{{ user.username }}</h3>
                     <ul>
-                        <li>昵称：</li>
+                        <li>昵称：{{ profile.nickname }}</li>
                         <li>邮箱：
                         {% if user.email %}
                             {{ user.email }}

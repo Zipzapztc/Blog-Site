@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.urls import reverse
 from .forms import LoginForm,RegisterForm
+from .models import Profile
 
 
 def log_in(request):
@@ -54,6 +55,8 @@ def log_out(request):
     return redirect(request.GET.get('from',reverse('home')))
 
 def user_info(request):
+    user=request.user
     context={}
+    context['profile']=Profile.objects.get(user=user)
     return render(request,'user_info.html',context)
 

@@ -39,7 +39,7 @@ class RegisterForm(forms.Form):
 
     def clean_password(self):
         password=self.data['password']
-        if password.isalnum():
+        if password.isalpha() or password.isdigit():
             raise forms.ValidationError('密码中必须包括数字和字母')
         return password
     
