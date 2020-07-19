@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ profile_title}}
+{% endblock title %}
+
+{% block nav_home_active %}
+    active
+{% endblock nav_home_active %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4 col-xs-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ form_title }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form action="" method='POST'>
+                            {% csrf_token %}
+                            <div class='form-group'>
+                                {% for item in form %}
+                                    {% if not item.is_hidden %}
+                                        <label for="{{ item.id_for_label }}">{{ item.label }}</label>
+                                    {% endif %}
+                                    {{ item }}
+                                    <p class="text-danger">{{ item.errors.as_text }}</p>
+                                {% endfor %}    
+                            </div>
+                            <span id='error_tip' class="text-danger">{{ form.non_field_errors }}</span>
+                            <div class="clearfix"></div>
+                            <div class="pull-left">
+                                {% block other_butthons %}
+                                {% endblock other_butthons %}
+                            </div>
+                            <div class="pull-right">
+                                <input type="submit" class='btn btn-primary' value={{ submit_text }}>
+                                <button class="btn btn-default" onclick="window.location.href='{{ redirect_to }}'">返回</button>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+{% endblock content %}

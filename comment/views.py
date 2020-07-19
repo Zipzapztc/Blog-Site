@@ -23,10 +23,10 @@ def update_comment(request):
 
         data['status']='SUCCESS'
         data['text']=comment.text
-        data['username']=comment.user.username
+        data['username']=comment.user.profile.nickname
         data['comment_time']=comment.comment_time.strftime('%Y-%m-%d %H:%M:%S')
         if parent is not None:
-            data['reply_to_user']=comment.reply_to_user.username
+            data['reply_to_user']=comment.reply_to_user.profile.nickname
         else:
             data['reply_to_user']=''
         data['id']=comment.id
