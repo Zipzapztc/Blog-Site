@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import log_in,log_in_for_modal,log_out,register,user_info,change_nickname,bind_email,send_verification_code
+from .views import log_in,log_in_for_modal,log_out,register,user_info,change_nickname,bind_email,send_verification_code,change_password,forget_password
 
 #http://localhost:8000/user/
 urlpatterns = [
@@ -11,5 +11,7 @@ urlpatterns = [
     path('change_nickname/',change_nickname,name='change_nickname'),
     path('bind_email/',bind_email,name='bind_email'),
     path('send_verification_code/',send_verification_code,name='send_verification_code'),
+    path('change_password/',change_password,name='change_password'),
+    path('forget_password/',forget_password,name='forget_password'),
 
 ]
