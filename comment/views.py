@@ -13,13 +13,17 @@ def update_comment(request):
         comment.content_object=comment_form.cleaned_data['content_object']
         comment.text=comment_form.cleaned_data['text']
         comment.user=comment_form.cleaned_data['user']
-        
+
+        #判断评论和回复
         parent=comment_form.cleaned_data['parent']
         if parent is not None:
             comment.root=parent.root if parent.root is not None else parent
             comment.parent=parent
             comment.reply_to_user=parent.user
         comment.save()
+        
+        #发送邮件
+        comment.send_email()
 
         data['status']='SUCCESS'
         data['text']=comment.text
