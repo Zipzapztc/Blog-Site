@@ -188,11 +188,11 @@ CACHES = {
 # https://docs.djangoproject.com/en/2.0/topics/email/
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.qq.com'
-EMAIL_PORT = 25
+EMAIL_PORT = 465
 EMAIL_HOST_USER = '995811384@qq.com'
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']  # 授权码
 EMAIL_SUBJECT_PREFIX = '[Blog-Site]'
-EMAIL_USE_TLS = True  # 与SMTP服务器通信时，是否启动TLS链接(安全链接)
+EMAIL_USE_SSL = True  # 与SMTP服务器通信时，是否启动SSL链接
 
 ADMINS = (
     ('admin', '995811384@qq.com'),
