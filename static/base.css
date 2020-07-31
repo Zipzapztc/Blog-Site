@@ -10,3 +10,15 @@ body {
 ul {
     list-style-type: none;
 }
+
+div.footer {
+    margin-top: 3em;
+    background-color: #f8f8f8;
+    color: #777;
+}
+
+div.website-info {
+    text-align: center;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
