@@ -25,7 +25,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -193,3 +193,9 @@ EMAIL_HOST_USER = '995811384@qq.com'
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']  # 授权码
 EMAIL_SUBJECT_PREFIX = '[Blog-Site]'
 EMAIL_USE_TLS = True  # 与SMTP服务器通信时，是否启动TLS链接(安全链接)
+
+# QQ登录配置
+QQ_APP_ID = '101892257'
+QQ_APP_KEY = os.environ['QQ_APP_KEY']
+QQ_REDIRECT_URL = 'https://www.zhuangtc.top/user/login_qq'
+QQ_STATE = 'zhuangtc'

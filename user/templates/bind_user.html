@@ -3,7 +3,7 @@
 {% load user_tags %}
 
 {% block title %}
-    登录
+    绑定用户
 {% endblock title %}
 
 {% block nav_home_active %}
@@ -16,32 +16,29 @@
             <div class="col-xs-4 col-xs-offset-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">登录</h3>
+                        <h3 class="panel-title">绑定</h3>
                     </div>
                     <div class="panel-body">
                         <form action="" method='POST'>
                             {% csrf_token %}
                             <div class='form-group'>
-                                {% for item in login_form %}
+                                {% for item in bind_user_form %}
                                     <label for="{{ item.id_for_label }}">{{ item.label }}</label>
                                     {{ item }}
                                     <p class="text-danger">{{ item.errors.as_text }}</p>
                                 {% endfor %}    
                             </div>
-                            <span class="pull-left text-danger">{{ login_form.non_field_errors }}</span>
+                            <span class="pull-left text-danger">{{ bind_user_form.non_field_errors }}</span>
                             <div class="clearfix"></div>
                             <div class="pull-left">
                                 <a href=" {% url 'forget_password' %} ">忘记密码?</a>
                             </div>
-                            <input type="submit" class='btn btn-primary pull-right' value='登录'>
+                            <input type="submit" class='btn btn-primary pull-right' value='绑定'>
                         </form>
                         <div class="clearfix"></div>
                         <hr>
                         <div>
-                            第三方登录：
-                            <a href="{% get_login_qq_url %}">
-                                <img src="{% static 'qq.png' %}" alt="qq账号登录">
-                            </a>
+                            <a href="{% url 'register' %}">没有账号？现在注册一个吧&gt;&gt;</a>
                         </div>
                     </div>
                 </div>  
