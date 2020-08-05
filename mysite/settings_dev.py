@@ -197,5 +197,5 @@ EMAIL_USE_TLS = True  # 与SMTP服务器通信时，是否启动TLS链接(安全
 # QQ登录配置
 QQ_APP_ID = '101892257'
 QQ_APP_KEY = os.environ['QQ_APP_KEY']
-QQ_REDIRECT_URL = 'https://www.zhuangtc.top/user/login_qq'
+QQ_REDIRECT_URL = 'http://www.zhuangtc.top/user/login_qq'
 QQ_STATE = 'zhuangtc'
