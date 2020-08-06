@@ -7,4 +7,6 @@ static_collected/
 #file
 *.sql
 media/download/*
+!media/download/readme.txt
 media/upload/*
+!media/upload/readme.txt
