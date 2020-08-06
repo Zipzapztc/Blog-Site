@@ -6,3 +6,5 @@ static_collected/
 
 #file
 *.sql
+media/download/*
+media/upload/*
