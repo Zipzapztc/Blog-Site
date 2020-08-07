@@ -11,7 +11,7 @@ from django.http import JsonResponse
 from django.urls import reverse
 from django.conf import settings
 from django.core.mail import send_mail
-from .forms import LoginForm,RegisterForm,ChangeNicknameForm,BindEmailForm,ChangePasswordForm,ForgetPassword,BindUserForm
+from .forms import LoginForm,RegisterForm,ChangeNicknameForm,BindEmailForm,ChangePasswordForm,ForgetPasswordForm,BindUserForm
 from .models import Profile,OAuthRelationship
 
 
@@ -81,16 +81,6 @@ def bind_user(request):
     context['bind_user_form'] = bind_user_form
     return render(request, 'bind_user.html', context)
 
-def log_in_for_modal(request):
-    login_form = LoginForm(request.POST)
-    data = {}
-    if login_form.is_valid():
-        user = login_form.cleaned_data['user']
-        login(request, user)
-        data['status'] = 'SUCCESS'   
-    else:
-        data['status'] = 'FAIL'
-    return JsonResponse(data)
 
 def register(request):
     if request.method == 'POST':
@@ -105,6 +95,16 @@ def register(request):
             new_profile = Profile(user=new_user, nickname=nickname)
             new_profile.save()
             del request.session['register_code']
+            
+            if request.session.get('openid',''):
+                openid = request.session.pop('openid')
+                oauth_type = request.session['oauth_type']
+                
+                relationship = OAuthRelationship()
+                relationship.user = new_user
+                relationship.openid = openid
+                relationship.oauth_type = oauth_type
+                relationship.save()
 
             user = authenticate(username=username, password=password)
             login(request, user)

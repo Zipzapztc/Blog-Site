@@ -28,11 +28,11 @@ class RegisterForm(forms.Form):
                                         widget=forms.TextInput(attrs={'class':'form-control','placeholder':'请输入用户名'}))
     nickname = forms.CharField(label='昵称', max_length=20, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'请输入昵称'}))
     email = forms.EmailField(label='邮箱', widget=forms.EmailInput(attrs={'class':'form-control','placeholder':'请输入邮箱'}))
+    verification_code = forms.CharField(label='验证码', widget=forms.TextInput(attrs={'class':'form-control','placeholder':'点击“发送验证码”在邮箱获取验证码'}))
     password = forms.CharField(label='密码', max_length=30, min_length=6,
                                         widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'请输入密码'}))
     password_again = forms.CharField(label='再次输入密码', max_length=30, min_length=6,
                                         widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'请再输入一次密码'}))
-    verification_code = forms.CharField(label='验证码', widget=forms.TextInput(attrs={'class':'form-control','placeholder':'点击“发送验证码”在邮箱获取验证码'}))
     
     def __init__(self, *args, **kwargs):
         if 'request' in kwargs:
@@ -146,7 +146,7 @@ class ChangePasswordForm(forms.Form):
             raise forms.ValidationError('旧密码错误')
         return old_password
 
-class ForgetPassword(forms.Form):
+class ForgetPasswordForm(forms.Form):
     email = forms.EmailField(label='邮箱', widget=forms.EmailInput(attrs={'class':'form-control','placeholder':'请输入绑定的邮箱地址'}))
     verification_code = forms.CharField(label='验证码', widget=forms.TextInput(attrs={'class':'form-control','placeholder':'点击“发送验证码”在邮箱获取验证码'}))
     new_password = forms.CharField(label='新密码', max_length=30, min_length=6,

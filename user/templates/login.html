@@ -6,6 +6,10 @@
     登录
 {% endblock title %}
 
+{% block header_extends %}
+    <link rel="stylesheet" href="{% static 'user.css' %}">
+{% endblock header_extends %}
+
 {% block nav_home_active %}
     active
 {% endblock nav_home_active %}
@@ -44,7 +48,12 @@
                             </a>
                         </div>
                     </div>
-                </div>  
+                </div>
+                {% if request.GET.from %}
+                    <a class="login-register-redirect" href="{% url 'register' %}?from={{ request.GET.from }}">前往注册 &gt;&gt;</a>
+                {% else %}
+                    <a class="login-register-redirect" href="{% url 'register' %}?from={{ request.get_full_path }}">前往注册 &gt;&gt;</a>
+                {% endif %}
             </div>
         </div>
     </div>
