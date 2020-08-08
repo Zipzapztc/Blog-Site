@@ -17,16 +17,19 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import home
+from .views import home,my_notifications
 
 urlpatterns = [
-    path('',home,name='home'),
+    path('', home,name='home'),
     path('admin/', admin.site.urls),
     path('user/', include('user.urls')),
-    path('blog/',include('blog.urls')),
+    path('blog/', include('blog.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('comment/',include('comment.urls')),
-    path('like/',include('like.urls')),
+    path('comment/', include('comment.urls')),
+    path('like/', include('like.urls')),
+    path('notifications/', include('notifications.urls', namespace='notifications')),
+    path('my_notifications/', my_notifications, name='my_notifications'),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

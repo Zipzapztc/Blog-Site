@@ -1,8 +1,8 @@
 from django.apps import AppConfig
 
 
-class CommentConfig(AppConfig):
-    name = 'comment'
+class UserConfig(AppConfig):
+    name = 'user'
 
     def ready(self):
         super().ready()
