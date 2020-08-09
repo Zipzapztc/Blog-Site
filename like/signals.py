@@ -10,7 +10,9 @@ def send_notification(sender, instance, **kwargs):
     if instance.content_type.model == 'blog':
         recipient = instance.content_object.author
         verb = '%s点赞了你的文章《%s》' % (instance.user.profile.nickname, instance.content_object.title)
+        url = instance.content_object.get_url()
     else:
         recipient = instance.content_object.user
         verb = '%s点赞了你的评论“%s”' % (instance.user.profile.nickname, strip_tags(instance.content_object.text))
-    notify.send(instance.user, recipient=recipient, verb=verb, action_object=instance)
+        url = instance.content_object.get_url() + '#comment_' + str(instance.content_object.id)
+    notify.send(instance.user, recipient=recipient, verb=verb, action_object=instance, url=url)

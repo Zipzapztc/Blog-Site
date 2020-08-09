@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import home,my_notifications
+from .views import home
 
 urlpatterns = [
     path('', home,name='home'),
@@ -28,7 +28,7 @@ urlpatterns = [
     path('comment/', include('comment.urls')),
     path('like/', include('like.urls')),
     path('notifications/', include('notifications.urls', namespace='notifications')),
-    path('my_notifications/', my_notifications, name='my_notifications'),
+    path('my_notifications/', include('my_notifications.urls')),  
 
 ]
 

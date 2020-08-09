@@ -28,3 +28,7 @@ div.website-info {
     bottom: 0;
     width: 100%;
 }
+
+span.unread-count {
+    background-color: tomato!important;
+}

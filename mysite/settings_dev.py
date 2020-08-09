@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'like',
     'user',
     'notifications',
+    'my_notifications',
 ]
 
 MIDDLEWARE = [
@@ -199,3 +200,8 @@ QQ_APP_ID = '101892257'
 QQ_APP_KEY = os.environ['QQ_APP_KEY']
 QQ_REDIRECT_URL = 'http://www.zhuangtc.top/user/login_qq'
 QQ_STATE = 'zhuangtc'
+
+#django-notifications-hq 设置
+DJANGO_NOTIFICATIONS_CONFIG = {
+     'USE_JSONFIELD': True,
+}

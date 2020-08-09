@@ -3,7 +3,6 @@ from django.db.models.signals import post_save
 from notifications.signals import notify
 from django.dispatch import receiver
 from django.utils.html import strip_tags
-from django.urls import reverse
 from django.conf import settings
 from django.template.loader import render_to_string
 from django.core.mail import send_mail
@@ -18,7 +17,8 @@ def send_notification(sender, instance, **kwargs):
     else:
         recipient = instance.reply_to_user
         verb = '%s回复了你的评论“%s”' % (instance.user.profile.nickname, strip_tags(instance.parent.text))
-    notify.send(instance.user, recipient=recipient, verb=verb, action_object=instance)
+    url = instance.content_object.get_url() + '#comment_' + str(instance.id)
+    notify.send(instance.user, recipient=recipient, verb=verb, action_object=instance, url=url)
 
 
 class SendEmail(Thread):
@@ -53,7 +53,7 @@ def send_email(sender, instance, **kwargs):
     if email != '':
         context = {}
         context['comment_text'] = instance.text
-        context['url'] = reverse('blog_detail', kwargs = {'blog_id': instance.content_object.id})
+        context['url'] = instance.content_object.get_url() + '#comment_' + str(instance.id)
         text = render_to_string('send_email.html', context)
         send_email = SendEmail(subject, text, email)
         send_email.start()
