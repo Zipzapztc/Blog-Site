@@ -215,7 +215,7 @@ def change_password(request):
 def forget_password(request):
     redirect_to = reverse('login')
     if request.method == 'POST':
-        form = ForgetPassword(request.POST, request=request)
+        form = ForgetPasswordForm(request.POST, request=request)
         if form.is_valid():
             email = form.cleaned_data['email']
             user = User.objects.get(email=email)
@@ -225,7 +225,7 @@ def forget_password(request):
             del request.session['forget_password_code']
             return redirect(redirect_to)
     else:
-        form = ForgetPassword()
+        form = ForgetPasswordForm()
     
     context = {}
     context['profile_title'] = '重置密码'

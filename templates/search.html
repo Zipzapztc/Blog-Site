@@ -1,0 +1,16 @@
+{% extends 'blog_list.html' %}
+{% load static %}
+
+{% block title %}
+    搜索
+{% endblock title %}
+
+{% block blog_list_title %}
+    <h4>搜索“{{ search_word }}”，共有{{ search_blogs_count }}个结果</h4>
+{% endblock blog_list_title %}
+
+{% block search_word1 %}search_word={{ search_word }}&{% endblock search_word1 %}
+
+{% block search_word2 %}search_word={{ search_word }}&{% endblock search_word2 %}
+
+{% block search_word3 %}search_word={{ search_word }}&{% endblock search_word3 %}

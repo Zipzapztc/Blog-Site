@@ -11,6 +11,12 @@ ul {
     list-style-type: none;
 }
 
+form.search-form button[type="submit"] {
+    background: none;
+    border: none;
+    margin-left: -3em;
+}
+
 div.footer {
     margin-top: 3em;
     background-color: #f8f8f8;

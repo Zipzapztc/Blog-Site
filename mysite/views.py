@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.contrib.contenttypes.models import ContentType
+from django.db.models import Q
 from django.core.cache import cache
 from read_statistic.utils import get_week_read_num
 from blog.models import Blog
+from blog.views import blog_list_common
 from blog.utils import get_week_hot_blog,get_month_hot_blog
 from read_statistic.utils import get_today_hot_blog,get_yesterday_hot_blog
 
@@ -33,3 +35,23 @@ def home(request):
     context['week_hot_blog'] = week_hot_blog
     context['month_hot_blog'] = month_hot_blog
     return render(request, 'home.html', context)
+
+def search(request):
+    search_word = request.GET.get('search_word','').strip()
+    condition = None
+    for word in search_word.split(' '):
+        if condition is None:
+            condition = Q(title__icontains=word)
+        else:
+            condition = condition | Q(title__icontains=word)
+
+    if condition is not None:        
+        search_blogs = Blog.objects.filter(condition)
+    else:
+        search_blogs = Blog.objects.all()
+
+
+    context = blog_list_common(request,search_blogs)
+    context['search_word'] = search_word
+    context['search_blogs_count'] = search_blogs.count()
+    return render(request, 'search.html', context)

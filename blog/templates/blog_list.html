@@ -46,7 +46,7 @@
                         {# 上一页 #}
                         <li>
                             {% if blogs.has_previous %}
-                                <a href="?page={{ blogs.previous_page_number}}" aria-label="Previous">
+                                <a href="?{% block search_word1 %}{% endblock search_word1 %}page={{ blogs.previous_page_number}}" aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             {% else %}
@@ -61,14 +61,14 @@
                                 {% if page_num == '...' %}
                                     <li><span>{{ page_num }}</span></li>
                                 {% else %}
-                                    <li><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+                                    <li><a href="?{% block search_word2 %}{% endblock search_word2 %}page={{ page_num }}">{{ page_num }}</a></li>
                                 {% endif %}
                             {% endif %}                  
                         {% endfor %}
                         {# 下一页 #}
                         <li>
                             {% if blogs.has_next %}
-                                <a href="?page={{ blogs.next_page_number}}" aria-label="Next">
+                                <a href="?{% block search_word3 %}{% endblock search_word3 %}page={{ blogs.next_page_number}}" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
                             {% else %}

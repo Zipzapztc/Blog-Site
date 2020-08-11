@@ -17,10 +17,10 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import home
+from .views import home,search
 
 urlpatterns = [
-    path('', home,name='home'),
+    path('', home, name='home'),
     path('admin/', admin.site.urls),
     path('user/', include('user.urls')),
     path('blog/', include('blog.urls')),
@@ -29,7 +29,7 @@ urlpatterns = [
     path('like/', include('like.urls')),
     path('notifications/', include('notifications.urls', namespace='notifications')),
     path('my_notifications/', include('my_notifications.urls')),  
-
+    path('search/', search, name='search'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
