@@ -33,6 +33,7 @@
                     <li>评论：{% get_comment_num blog %}</li>
                     <li>点赞：{% get_like_num blog %}</li>
                 </ul>
+                <br>
                 <div class='blog-content'>{{ blog.content|safe }}</div>
                 <div class="like" onclick="likeChange(this,'{% get_content_type blog %}',{{ blog.id }})">
                     <span class="glyphicon glyphicon-thumbs-up {% get_like_status blog %}"></span>
