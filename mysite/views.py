@@ -36,6 +36,7 @@ def home(request):
     context['month_hot_blog'] = month_hot_blog
     return render(request, 'home.html', context)
 
+
 def search(request):
     search_word = request.GET.get('search_word','').strip()
     condition = None
@@ -49,7 +50,6 @@ def search(request):
         search_blogs = Blog.objects.filter(condition)
     else:
         search_blogs = Blog.objects.all()
-
 
     context = blog_list_common(request,search_blogs)
     context['search_word'] = search_word

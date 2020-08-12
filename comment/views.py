@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from .models import Comment
 from .forms import CommentForm
 
+
 def update_comment(request):
     comment_form = CommentForm(request.POST, user=request.user)
     data = {}

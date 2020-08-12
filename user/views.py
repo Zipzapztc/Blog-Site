@@ -28,6 +28,7 @@ def log_in(request):
     context['login_form'] = login_form
     return render(request, 'login.html', context)
 
+
 def log_in_qq(request):
     code = request.GET['code']
     state = request.GET['state']
@@ -58,6 +59,7 @@ def log_in_qq(request):
         request.session['oauth_type'] = 0
         request.session['openid'] = openid
         return redirect(reverse('bind_user'))
+
 
 def bind_user(request):
     if request.method == 'POST':
@@ -115,13 +117,16 @@ def register(request):
     context['register_form'] = register_form
     return render(request, 'register.html', context)
 
+
 def log_out(request):
     logout(request)
     return redirect(request.GET.get('from', reverse('home')))
 
+
 def user_info(request):
     context = {}
     return render(request, 'user_info.html', context)
+
 
 def change_nickname(request):
     redirect_to = request.GET.get('from', reverse('home'))
@@ -144,6 +149,7 @@ def change_nickname(request):
     context['redirect_to'] = redirect_to
     return render(request, 'form.html', context)
 
+
 def bind_email(request):
     redirect_to = request.GET.get('from', reverse('home'))
     if request.method == 'POST':
@@ -164,6 +170,7 @@ def bind_email(request):
     context['form'] = form
     context['redirect_to'] = redirect_to
     return render(request, 'bind_email.html', context)
+
 
 def send_verification_code(request):
     email = request.GET.get('email','')
@@ -191,6 +198,7 @@ def send_verification_code(request):
         data['status'] = 'FAIL'
     return JsonResponse(data)
 
+
 def change_password(request):
     redirect_to = request.GET.get('from', reverse('home'))
     user = request.user
@@ -211,6 +219,7 @@ def change_password(request):
     context['form'] = form
     context['redirect_to'] = redirect_to
     return render(request, 'form.html', context)
+
 
 def forget_password(request):
     redirect_to = reverse('login')

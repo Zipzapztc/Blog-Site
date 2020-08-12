@@ -11,6 +11,16 @@ ul {
     list-style-type: none;
 }
 
+form.search-form {
+    display: flex;
+    width: 100%;
+    margin-left: 0;
+}
+
+form.search-form div.form-group {
+    width: 100%;
+}
+
 form.search-form button[type="submit"] {
     background: none;
     border: none;

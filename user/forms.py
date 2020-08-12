@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from .models import OAuthRelationship
 
+
 class LoginForm(forms.Form):
     username_or_email = forms.CharField(label='用户名或邮箱', widget=forms.TextInput(attrs={'class':'form-control','placeholder':'请输入用户名或邮箱'}))
     password = forms.CharField(label='密码', widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'请输入密码'}))
@@ -22,7 +23,8 @@ class LoginForm(forms.Form):
                     return self.cleaned_data
             raise forms.ValidationError('用户名或密码错误')
         return self.cleaned_data
-        
+
+     
 class RegisterForm(forms.Form):
     username = forms.CharField(label='用户名', max_length=30, min_length=3,
                                         widget=forms.TextInput(attrs={'class':'form-control','placeholder':'请输入用户名'}))
@@ -72,6 +74,7 @@ class RegisterForm(forms.Form):
             raise forms.ValidationError('验证码错误')
         return verification_code
 
+
 class ChangeNicknameForm(forms.Form):
     new_nickname = forms.CharField(label='昵称', max_length=20, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'请输入昵称'}))
 
@@ -86,6 +89,7 @@ class ChangeNicknameForm(forms.Form):
         else:
             raise forms.ValidationError('用户未登录')
         return self.cleaned_data
+
 
 class BindEmailForm(forms.Form):
     email = forms.EmailField(label='邮箱', widget=forms.EmailInput(attrs={'class':'form-control','placeholder':'请输入邮箱地址'}))
@@ -116,6 +120,7 @@ class BindEmailForm(forms.Form):
             raise forms.ValidationError('验证码错误')
         return verification_code
 
+
 class ChangePasswordForm(forms.Form):
     old_password = forms.CharField(label='旧密码', widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'请输入旧密码'}))
     new_password = forms.CharField(label='新密码', max_length=30, min_length=6,
@@ -145,6 +150,7 @@ class ChangePasswordForm(forms.Form):
         if not self.user.check_password(old_password):
             raise forms.ValidationError('旧密码错误')
         return old_password
+
 
 class ForgetPasswordForm(forms.Form):
     email = forms.EmailField(label='邮箱', widget=forms.EmailInput(attrs={'class':'form-control','placeholder':'请输入绑定的邮箱地址'}))
@@ -178,6 +184,7 @@ class ForgetPasswordForm(forms.Form):
         if not(verification_code!='' and verification_code==user_code):
             raise forms.ValidationError('验证码错误')
         return verification_code
+
 
 class BindUserForm(forms.Form):
     username_or_email = forms.CharField(label='用户名或邮箱', widget=forms.TextInput(attrs={'class':'form-control','placeholder':'请输入用户名或邮箱'}))

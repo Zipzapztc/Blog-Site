@@ -8,6 +8,7 @@ class ProfileInline(admin.StackedInline):
     model = Profile
     can_delete = False
 
+
 class UserAdmin(BaseUserAdmin):
     inlines = (ProfileInline, )
     list_display = ('username', 'nickname', 'email', 'is_staff', 'is_active', 'is_superuser')
@@ -23,6 +24,7 @@ admin.site.register(User, UserAdmin)
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'nickname')
+
 
 @admin.register(OAuthRelationship)
 class OAuthRelationshipAdmin(admin.ModelAdmin):
