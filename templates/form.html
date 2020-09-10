@@ -25,7 +25,16 @@
                                     {% if not item.is_hidden %}
                                         <label for="{{ item.id_for_label }}">{{ item.label }}</label>
                                     {% endif %}
-                                    {{ item }}
+                                    {% if item.id_for_label == 'id_email' %}
+                                        <div class="input-group">
+                                            {{ item }}
+                                            <span class="input-group-btn">
+                                                <button id="send_code" class="btn btn-default">发送验证码</button>
+                                            </span>
+                                        </div>
+                                    {% else %}
+                                        {{ item }}
+                                    {% endif %}
                                     <p class="text-danger">{{ item.errors.as_text }}</p>
                                 {% endfor %}    
                             </div>

@@ -45,14 +45,14 @@
                         </form>
                     </li>
                     {% if not user.is_authenticated %}
-                        <li>
+                        <li class="{% block nav_log_active %}{% endblock nav_log_active %}">
                             {% if request.GET.from %}
                                 <a href="{% url 'login' %}?from={{ request.GET.from }}">登录</a>
                             {% else %}
                                 <a href="{% url 'login' %}?from={{ request.get_full_path }}">登录</a>
                             {% endif %}
                         </li>
-                        <li>
+                        <li class="{% block nav_register_active %}{% endblock nav_register_active %}">
                             {% if request.GET.from %}
                                 <a href="{% url 'register' %}?from={{ request.GET.from }}">注册</a>
                             {% else %}
@@ -60,7 +60,7 @@
                             {% endif %}
                         </li>
                     {% else %}
-                        <li class="dropdown">
+                        <li class="dropdown {% block nav_user_active %}{% endblock nav_user_active %}">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
                                 {{ user.profile.nickname }}({{ user.username }})
                                 <span class="badge unread-count live_notify_badge"></span>
