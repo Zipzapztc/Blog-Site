@@ -1,9 +1,10 @@
-from django.urls import path
+from django.urls import path,include
 from .views import log_in,log_in_qq,bind_user,log_out,register,user_info,change_nickname,bind_email,send_verification_code,change_password,forget_password
 
 #http://localhost:8000/user/
 urlpatterns = [
     path('login/', log_in, name='login'),
+    path('captcha',include('captcha.urls')),
     path('login_qq/', log_in_qq, name='login_qq'),
     path('bind_user/', bind_user, name='bind_user'),
     path('logout/', log_out, name='logout'),

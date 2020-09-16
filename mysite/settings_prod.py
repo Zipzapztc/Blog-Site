@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'user',
     'notifications',
     'my_notifications',
+    'captcha',
 
 ]
 
@@ -256,3 +257,9 @@ QQ_STATE = 'zhuangtc'
 DJANGO_NOTIFICATIONS_CONFIG = {
      'USE_JSONFIELD': True,
 }
+
+
+# Captcha 配置
+# Captcha 默认格式
+CAPTCHA_OUTPUT_FORMAT = '%(image)s %(hidden_field)s %(text_field)s'
+CAPTCHA_IMAGE_SIZE = (90, 30)
